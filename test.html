@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Map Example</title>
+    <script src="mapdata.js"></script>
+    <script src="europemap.js"></script>
+  </head>
+	<body>
+		
+		
+
+		<div style="position: absolute; top: 0%; left: 550px;">
+			<h2>Plant Key</h2>
+			<ul>
+				<li style="color: blue;">4</li>
+				<li style="color: orange;">5</li>
+				<li style="color: red;">6</li>
+				<li style="color: cyan;">7</li>
+				<li style="color: green;">8</li>
+				
+			</ul>
+			<br>
+
+			<!-- <div style="display: flex; align-items: center;">
+				<div style="width: 20px; height: 20px; background: repeating-linear-gradient(45deg, black, black 2px, white 2px, white 4px);"></div>
+				<p style="margin-left: 10px;">Delivery too late</p>
+			</div> -->
+
+			<div style="display: flex; align-items: center;">
+				<div style="width: 20px; height: 20px;  background: black;"></div>
+				<p style="margin-left: 10px;">Delivery too late</p>
+			</div>
+
+
+			<br>
+			More saturated: material 1 
+			<br>
+			Less saturated: material 2
+
+			
+		</div>
+
+
+
+		<div>
+			<h1> </h1>
+			<div style="max-width: 700px"> 
+				<div id="map"></div>
+			</div>
+			
+		</div>
+
+
+		<!-- red plant -->
+		<div style="position: absolute; top: 360px; left: 220px;">
+			<div style="width: 35px; height: 35px; border-radius: 50%; background-color: lightcoral; background-image: conic-gradient(red 25%, transparent 0, transparent 90%, black 90%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 440px; left: 150px;">
+			<div style="width: 50px; height: 50px; border-radius: 50%; background-color: lightcoral; background-image: conic-gradient(red 15%, transparent 0, transparent 95%, black 95%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 460px; left: 110px;">
+			<div style="width: 20px; height: 20px; border-radius: 50%; background-color: lightcoral; background-image: conic-gradient(red 20%, transparent 0, transparent 80%, black 80%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 380px; left: 280px;">
+			<div style="width: 15px; height: 15px; border-radius: 50%; background-color: lightcoral; background-image: conic-gradient(red 35%, transparent 0, transparent 85%, black 85%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 400px; left: 310px;">
+			<div style="width: 30px; height: 30px; border-radius: 50%; background-color: lightcoral; background-image: conic-gradient(red 15%, transparent 0, transparent 97%, black 97%); border: 2px solid black;"></div>
+		</div>
+
+
+		<!-- cyan plant -->
+		<div style="position: absolute; top: 300px; left: 180px;">
+			<div style="width: 30px; height: 30px; border-radius: 50%; background-color: lightcyan; background-image: conic-gradient(cyan 25%, transparent 0, transparent 85%, black 85%); border: 2px solid black;"></div>
+		</div>
+
+
+		<!-- blue plant -->
+		<div style="position: absolute; top: 330px; left: 300px;">
+			<div style="width: 25px; height: 25px; border-radius: 50%; background-color: rgb(52, 183, 227); background-image: conic-gradient(blue 30%, transparent 0, transparent 85%, black 85%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 330px; left: 240px;">
+			<div style="width: 35px; height: 35px; border-radius: 50%; background-color: rgb(52, 183, 227); background-image: conic-gradient(blue 15%, transparent 0, transparent 95%, black 95%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 300px; left: 250px;">
+			<div style="width: 20px; height: 20px; border-radius: 50%; background-color: rgb(52, 183, 227); background-image: conic-gradient(blue 10%, transparent 0, transparent 90%, black 90%); border: 2px solid black;"></div>
+		</div>
+
+		<!-- orange plant -->
+		<div style="position: absolute; top: 340px; left: 360px;">
+			<div style="width: 20px; height: 20px; border-radius: 50%; background-color: rgb(244, 191, 131); background-image: conic-gradient(orange 10%, transparent 0, transparent 90%, black 90%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 310px; left: 380px;">
+			<div style="width: 50px; height: 50px; border-radius: 50%; background-color: rgb(244, 191, 131); background-image: conic-gradient(orange 15%, transparent 0, transparent 95%, black 95%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 370px; left: 390px;">
+			<div style="width: 30px; height: 30px; border-radius: 50%; background-color: rgb(244, 191, 131); background-image: conic-gradient(orange 25%, transparent 0, transparent 85%, black 85%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 500px; left: 430px;">
+			<div style="width: 25px; height: 25px; border-radius: 50%; background-color: rgb(244, 191, 131); background-image: conic-gradient(orange 20%, transparent 0, transparent 92%, black 92%); border: 2px solid black;"></div>
+		</div>
+
+
+		<!-- green plant -->
+		<div style="position: absolute; top: 280px; left: 420px;">
+			<div style="width: 15px; height: 15px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 15%, transparent 0, transparent 90%, black 90%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 260px; left: 440px;">
+			<div style="width: 30px; height: 30px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 25%, transparent 0, transparent 92%, black 92%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 230px; left: 440px;">
+			<div style="width: 20px; height: 20px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 35%, transparent 0, transparent 94%, black 94%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 150px; left: 420px;">
+			<div style="width: 60px; height: 60px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 30%, transparent 0, transparent 96%, black 96%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 180px; left: 340px;">
+			<div style="width: 20px; height: 20px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 20%, transparent 0, transparent 88%, black 88%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 210px; left: 270px;">
+			<div style="width: 40px; height: 40px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 10%, transparent 0, transparent 86%, black 86%); border: 2px solid black;"></div>
+		</div>
+
+		<div style="position: absolute; top: 270px; left: 300px;">
+			<div style="width: 20px; height: 20px; border-radius: 50%; background-color: lightgreen; background-image: conic-gradient(green 5%, transparent 0, transparent 84%, black 84%); border: 2px solid black;"></div>
+		</div>
+
+		
+
+
+	</body>
+</html>
+      
+    
+<!-- to enable zoom: in mapdata.js change 'manual zoom' to yes -->
+
+
