@@ -22,8 +22,8 @@ var simplemaps_europemap_mapdata={
     location_opacity: 0.8,
     location_hover_opacity: 1,
     location_url: "",
-    location_size: 55,
-    location_type: "circle",
+    location_size: 40,
+    location_type: "star",
     location_border_color: "#FFFFFF",
     location_border: 2,
     location_hover_border: 2.5,
@@ -382,20 +382,37 @@ var simplemaps_europemap_mapdata={
     }
   },
   locations: {
-    /* "0": {
-      location_size: 80,
-      lat: 48.857,
-      lng: 2.341,
-      name: "Paris",
-      color: "yellow",
-      location_type: "square"
+    "0": {
+      lat: 45.763420,
+      lng: 4.834277,
+      name: "Lyon",
+      color: "black",
+      
     },
     "1": {
-      lat: 68.857,
-      lng: 22.341,
-      name: "idk",
-      color: "yellow"
-    } */
+      lat: 51.260197,
+      lng: 4.402771,
+      name: "Antwerp",
+      color: "black"
+    },
+    "2": {
+      lat: 51.107883,
+      lng: 17.038538,
+      name: "Wroclaw",
+      color: "black"
+    },
+    "3": {
+      lat: 52.489471,
+      lng: -1.898575,
+      name: "Birmingham",
+      color: "black"
+    },
+    "4": {
+      lat: 57.708870,
+      lng: 11.974560,
+      name: "Goteborg",
+      color: "black"
+    }
   },
   labels: {}
 };
