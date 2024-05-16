@@ -1,0 +1,83 @@
+################################################### interactieve plot op datum
+
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(shiny)
+
+# Read the CSV file, considering only the relevant columns
+Purchases <- read.csv("C:/Users/murta/Desktop/academiejaar 2023-2024/semester 2/Data visualization in data science/Taak 4/Purchases.csv", colClasses = c("MaterialKey" = "character", 
+                                                                                                                                                         "PlantKey" = "numeric",
+                                                                                                                                                         "PurchaseOrderQuantity" = "numeric", 
+                                                                                                                                                         "PlannedArrivalDateYard" = "Date", 
+                                                                                                                                                         "ActualArrivalDateYard" = "Date"))
+
+# Process the data to calculate the number of days each purchase is late
+Purchases$DaysLate <- as.numeric(Purchases$ActualArrivalDateYard - Purchases$PlannedArrivalDateYard)
+
+# Define UI for application
+ui <- fluidPage(
+  titlePanel("Average Number of Days Late by Material in Each Plant"),
+  fluidRow(
+    column(8,
+           plotlyOutput("plot", height = "600px")
+    ),
+    column(2,
+           dateInput("start_date", "Start Date:", value = Sys.Date(), format = "yyyy-mm-dd")
+    ),
+    column(2,
+           dateInput("end_date", "End Date:", value = Sys.Date(), format = "yyyy-mm-dd")
+    )
+  )
+)
+
+# Define server logic
+server <- function(input, output, session) {
+  
+  output$plot <- renderPlotly({
+    # Filter data based on selected date range
+    filtered_purchases <- Purchases %>%
+      filter(PlannedArrivalDateYard >= input$start_date &
+               PlannedArrivalDateYard <= input$end_date)
+    
+    # Group the filtered data by Material, Plant, and PlannedArrivalDateYard, calculate TotalPurchases and AvgDaysLate
+    grouped_data <- filtered_purchases %>%
+      group_by(MaterialKey, PlantKey, PlannedArrivalDateYard) %>%
+      summarise(TotalPurchases = sum(PurchaseOrderQuantity),
+                AvgDaysLate = mean(DaysLate))
+    
+    # Aggregate data to avoid multiple circles for each combination of MaterialKey, PlantKey, and PlannedArrivalDateYard
+    grouped_data <- grouped_data %>%
+      group_by(MaterialKey, PlantKey) %>%
+      summarise(TotalPurchases = sum(TotalPurchases),
+                AvgDaysLate = mean(AvgDaysLate))
+    
+    # Create ggplot object
+    p <- ggplot(grouped_data, aes(x = as.factor(PlantKey), 
+                                  y = AvgDaysLate, 
+                                  color = MaterialKey, 
+                                  size = TotalPurchases,
+                                  text = paste("Material:", MaterialKey, "<br>",
+                                               "Plant:", PlantKey, "<br>",
+                                               "Total Purchases:", TotalPurchases, "<br>",
+                                               "Average Days Late:", AvgDaysLate))) +
+      geom_point(alpha = 0.5) +  # Set transparency
+      scale_color_manual(values = c("black", "blue"),
+                         name = "Material") +  # Set legend title
+      scale_size_continuous(range = c(10, 60), guide = "none") +  # Remove legend for size
+      labs(title = paste("Average Number of Days Late by Material in Each Plant from", input$start_date, "to", input$end_date),
+           x = "Plant Number",
+           y = "Average Days Late") +
+      theme_minimal() +
+      ylim(0, 2)  # Set the y-axis limit
+    
+    # Convert ggplot object to plotly object for interactivity
+    p_plotly <- ggplotly(p, tooltip = "text", dynamicTicks = TRUE)
+    
+    p_plotly
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
